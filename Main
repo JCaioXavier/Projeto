@@ -1,0 +1,139 @@
+import java.util.List;
+import java.util.Scanner;
+
+import RequisitosCadastro.RequisitosClientes;
+import RequisitosCadastro.RequisitosFuncionarios;
+import Utilitarios.CadastroClientes;
+import Utilitarios.CadastroFuncionarios;
+import static Utilitarios.DadosClientes.Clientes;
+import static Utilitarios.DadosFuncionarios.Funcionarios;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        List<RequisitosClientes> listaClientes = Clientes();
+        List<RequisitosFuncionarios> listaFuncionarios = Funcionarios();
+
+        int opcao = 0, opcaoCadastro = 0, opcaoLoop = 0, opcaoLogin;
+
+        boolean continuarCadastro;
+
+        do {
+            System.out.println("""
+                    1 | Entrar
+                    2 | Sair""");
+
+            opcao = scan.nextInt();
+
+            if (opcao == 2) {
+                System.out.println("Saindo do sistema.");
+                return;
+            }
+        } while (opcao != 1);
+
+        do{
+            do {
+                System.out.println("""
+                    1 | Cadastro
+                    2 | Login
+                    3 | Sair""");
+
+                opcaoLoop = scan.nextInt();
+
+                if(opcaoLoop == 3){
+                    return;
+                }
+
+                opcao = opcaoLoop;
+
+                if(opcao == 1){
+                    do {
+                        System.out.println("""
+                            1 | Cliente
+                            2 | Funcionario""");
+
+                        opcaoCadastro = scan.nextInt();
+                    }while(opcaoCadastro != 1 && opcaoCadastro != 2);
+
+                    if(opcaoCadastro == 1){
+                        continuarCadastro = true;
+                        while(continuarCadastro)
+                            do {
+                                RequisitosClientes novoCliente = CadastroClientes.CadastroCliente();
+
+                                listaClientes.add(novoCliente);
+
+                                System.out.println("""
+                                        Deseja cadastrar outro cliente?
+                                        1 | Sim
+                                        2 | Não""");
+
+                                opcaoCadastro = scan.nextInt();
+
+                                if (opcaoCadastro == 2) {
+                                    continuarCadastro = false;
+                                    opcaoCadastro = 0;
+                                    break;
+                                }
+                            } while (opcaoCadastro != 1);
+                    }
+                        if (opcaoCadastro == 2) {
+                            continuarCadastro = true;
+                            while(continuarCadastro)
+                                do {
+                                    RequisitosFuncionarios novoFuncionario = CadastroFuncionarios.CadastroFuncionario();
+
+                                    listaFuncionarios.add(novoFuncionario);
+
+                                    System.out.println("""
+                                        Deseja cadastrar outro funcionario?
+                                        1 | Sim
+                                        2 | Não""");
+
+                                    opcaoCadastro = scan.nextInt();
+
+                                    if (opcaoCadastro == 2) {
+                                        continuarCadastro = false;
+                                        opcaoCadastro = 0;
+                                        break;
+                                    }
+                                } while (opcaoCadastro != 1);
+                        }
+                    }
+                opcaoLogin = opcao;
+                if(opcaoLogin == 2){
+                    System.out.println("Digite o usuario: ");
+                    String usuario = scan.next();
+
+                    System.out.println("Digite a senha: ");
+                    String senha = scan.next();
+                    do {
+                        if (usuario.equalsIgnoreCase("admin") && senha.equalsIgnoreCase("admin")) {
+                            System.out.println("""
+                                    1 | Lista de clientes
+                                    2 | Lista de funcionarios""");
+
+                            opcaoLogin = scan.nextInt();
+                            if (opcaoLogin == 1) {
+                                for (RequisitosClientes Cliente : listaClientes) {
+                                    System.out.println(Cliente);
+                                    System.out.println(" ");
+                                }
+                            } else if (opcaoLogin == 2) {
+                                for (RequisitosFuncionarios Funcionarios : listaFuncionarios) {
+                                    System.out.println(Funcionarios);
+                                    System.out.println(" ");
+                                }
+                            }
+                        }
+                        System.out.println("""
+                                1 | Voltar
+                                2 | Sair""");
+
+                        opcao = scan.nextInt();
+                    }while (opcao != 2) ;
+                }
+            } while (opcaoLoop != 1 && opcaoLoop != 2);
+        }while(true);
+    }
+}
