@@ -1,0 +1,26 @@
+package Utilitarios;
+
+import RequisitosCadastro.RequisitosFuncionarios;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class DadosFuncionarios {
+    public static List<RequisitosFuncionarios> Funcionarios(){
+        RequisitosFuncionarios cadu = new RequisitosFuncionarios();
+
+        cadu.id_funcionario = 1;
+        cadu.usuario = "cadu12299";
+        cadu.senha = "abcabc123";
+        cadu.nome = "Carlos";
+        cadu.cpf = "12385431253";
+        cadu.endereco = "Rua A";
+        cadu.telefone = "82999932567";
+
+        List<RequisitosFuncionarios> Funcionarios = new ArrayList<>();
+
+        Funcionarios.add(cadu);
+
+        return Funcionarios;
+    }
+}
