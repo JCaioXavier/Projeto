@@ -1,0 +1,21 @@
+package RequisitosCadastro;
+
+public class RequisitosFuncionarios {
+        public int id_funcionario;
+        public String usuario;
+        public String senha;
+        public String nome;
+        public String cpf;
+        public String endereco;
+        public String telefone;
+
+        public String toString() {
+                return "Id_cliente: " + id_funcionario + "\n" +
+                        "Usuario: " + usuario + "\n" +
+                        "Senha: " + senha + "\n" +
+                        "Nome: " + nome + "\n" +
+                        "Cpf: " + cpf + "\n" +
+                        "Endereço: " + endereco + "\n" +
+                        "Telefone: " + telefone;
+        }
+}
